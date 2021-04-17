@@ -1,0 +1,34 @@
+<div class="col-md-8 form-group">        
+    <input type="file" class="form-control" (change)="readFile($event)" placeholder="Upload file" accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">        
+    <button *ngIf = "records.length" (click) = 'loadData()'>Click To Load Data</button>
+
+</div>
+<br/>
+<div>
+    <button (click) = 'fetchData()'>Click To Fetch Data From Database</button>
+</div> 
+
+<hr/>
+
+<div *ngIf = "fetchedData && fetchedData.data">
+    <table *ngIf = "fetchedData.data.length">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Contact</th>
+        </tr>
+        <tr  *ngFor="let record of fetchedData.data">
+          <td>{{record.name}}</td>
+          <td>{{record.age}}</td>
+          <td>{{record.contact}}</td>
+        </tr>
+    </table>
+</div>
+<br/>
+
+<div *ngIf = "fetchedData && fetchedData.data">
+    <button *ngIf = "fetchedData.data.length" (click) = 'previousPage()'>Previous</button> &nbsp;&nbsp;&nbsp;&nbsp;
+    <button *ngIf = "fetchedData.data.length" (click) = 'nextPage()'>Next</button>
+</div>
+  
+  
